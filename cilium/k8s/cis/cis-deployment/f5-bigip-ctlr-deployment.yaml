@@ -17,8 +17,8 @@ spec:
       # Name of the Service Account bound to a Cluster Role with the required
       # permissions
       containers:
-        - name: k8s-bigip-ctlr
-          image: "f5networks/k8s-bigip-ctlr:2.11.1"
+        - name: cntr-ingress-svcs
+          image: registry.connect.redhat.com/f5networks/cntr-ingress-svcs:latest
           env:
             - name: BIGIP_USERNAME
               valueFrom:
