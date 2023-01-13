@@ -41,11 +41,10 @@ spec:
             # https://clouddocs.f5.com/containers/latest/
               "--bigip-username=$(BIGIP_USERNAME)",
               "--bigip-password=$(BIGIP_PASSWORD)",
-              "--bigip-url=10.192.75.60",
+              "--bigip-url=192.168.200.60",
               "--bigip-partition=k8s",
               "--namespace=default",
               "--pool-member-type=cluster",
-              "--flannel-name=cilium-vxlan-profile",
               "--log-level=DEBUG",
               "--insecure=true",
               "--custom-resource-mode=true",
