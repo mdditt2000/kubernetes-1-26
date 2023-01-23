@@ -30,6 +30,7 @@ kubectl create -f f5-bigip-node.yaml
 * Flannel is very simple to setup in Kubernetes
 * Works really but not easy to customize when intergrating with BIG-IP. For example if you want to change the VNI to support multiple tunnels
 * VXLAN not easy to setup and very difficult troubleshoot when things do not work
+* BIG-IP Ha not possible unless you disable all floating address on BIG-IP. That is not really possible for some BIG-IP users
 
 
 
