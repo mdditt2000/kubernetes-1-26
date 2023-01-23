@@ -1,4 +1,4 @@
-# Setup Cilium with F5 BIG-IP
+# Setup Fannel with F5 BIG-IP
 
 This guide documents how to use Flannel CNI with F5 BIG-IP. I am only going to provide a quick example for this documentation. Full BIG-IP HA examples can be found on my user-guides 
 
@@ -24,6 +24,12 @@ kubectl create -f bigip-ctlr-clusterrole.yaml
 kubectl create -f f5-bigip-ctlr-deployment.yaml
 kubectl create -f f5-bigip-node.yaml
 ```
+
+# Pros and Cons of using Fannel with F5 BIG-IP
+
+* Flannel is very simple to setup in Kubernetes
+* Works really but not easy to customize when intergrating with BIG-IP. For example if you want to change the VNI to support multiple tunnels
+* VXLAN not easy to setup and very difficult troubleshoot when things do not work
 
 
 
