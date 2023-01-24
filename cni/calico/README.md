@@ -1,39 +1,33 @@
-# Setup Flannel with F5 BIG-IP
+# Setup Fannel with F5 BIG-IP
 
-This guide documents how to use Flannel CNI with F5 BIG-IP. In this document I used the default ** kubeadm init  --pod-network-cidr=10.244.0.0/16**
+This guide documents how to use Calico CNI with F5 BIG-IP. I am only going to provide a quick example for this documentation. In this document I migrated from Flannel to Calico using the following document [Replace Flannel w/ Calico](https://clouddocs.f5.com/training/community/containers/html/appendix/appendix8/appendix8.html#appendix-8-replace-flannel-w-calico)
 
-Looking at the nodes that get created **Flannel** uses the cidr=10.244.0.0 for the pod network
+### Step 1 Initial Setup for non-HA
 
-```
-metadata:
-  annotations:
-    flannel.alpha.coreos.com/backend-data: '{"VNI":1,"VtepMAC":"c2:e5:af:15:7c:f6"}'
-    flannel.alpha.coreos.com/backend-type: vxlan
-    flannel.alpha.coreos.com/kube-subnet-manager: "true"
-    flannel.alpha.coreos.com/public-ip: 192.168.200.65
-    kubeadm.alpha.kubernetes.io/cri-socket: unix:///var/run/crio/crio.sock
-    node.alpha.kubernetes.io/ttl: "0"
-    volumes.kubernetes.io/controller-managed-attach-detach: "true"
-  creationTimestamp: "2023-01-18T23:55:30Z"
-  labels:
-    beta.kubernetes.io/arch: amd64
-    beta.kubernetes.io/os: linux
-    kubernetes.io/arch: amd64
-    kubernetes.io/hostname: master-node-k8.f5demo.com
-    kubernetes.io/os: linux
-    node-role.kubernetes.io/control-plane: ""
-    node.kubernetes.io/exclude-from-external-load-balancers: ""
-  name: master-node-k8.f5demo.com
-  resourceVersion: "122886"
-  uid: 6aac993f-91cf-4bb7-a564-98a2a652c571
-spec:
-  podCIDR: 10.244.0.0/24
-  podCIDRs:
-  - 10.244.0.0/24
-  taints:
-  - effect: NoSchedule
-    key: node-role.kubernetes.io/control-plane
+Flannel requires VXLAN tunnels setup on the BIG-IP. This process can be tricky and complex in some environments
 
 ```
+tmsh create auth partition k8s
+tmsh create net tunnels vxlan fl-vxlan port 8472 flooding-type none
+tmsh create net tunnels tunnel fl-vxlan key 1 profile fl-vxlan local-address 192.168.200.60
+tmsh create net self 10.244.20.60 address 10.244.20.60/255.255.0.0 allow-service none vlan fl-vxlan
+```
 
-I have documented how to setup BIG-IP HA etc using flannel on my GitHub page at 
+### Step 2 Deploy CIS
+
+Deploy CIS and create CNI
+
+```
+#create kubernetes cis container, authentication and RBAC
+kubectl create secret generic bigip-login -n kube-system --from-literal=username=admin --from-literal=password=f5PME123
+kubectl create -f bigip-ctlr-clusterrole.yaml
+kubectl create -f f5-bigip-ctlr-deployment.yaml
+kubectl create -f f5-bigip-node.yaml
+```
+
+# Pros and Cons of using Fannel with F5 BIG-IP
+
+* Flannel is very simple to setup in Kubernetes
+* Works really but not easy to customize when intergrating with BIG-IP. For example if you want to change the VNI to support multiple tunnels
+* VXLAN not easy to setup and very difficult troubleshoot when things do not work
+* BIG-IP Ha not possible unless you disable all floating address on BIG-IP. That is not really possible for some BIG-IP users
