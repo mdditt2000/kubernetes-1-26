@@ -1,8 +1,8 @@
 # kubernetes-1-26
-Example showcasing integration with BIGIP using Container Ingress on Kubernetes 1.26
+Example showcasing F5 BIGIP using Container Ingress Service on Kubernetes 1.26
 
 ### BIG-IP and CNI
 
-* [Fallen](https://github.com/mdditt2000/k8s-bigip-ctlr/blob/main/user_guides/README.md)
-* [Calico](https://github.com/mdditt2000/k8s-bigip-ctlr/blob/main/user_guides/README.md)
-* [Cilium](https://github.com/mdditt2000/k8s-bigip-ctlr/blob/main/user_guides/README.md)
+* [Flannel](https://github.com/mdditt2000/kubernetes-1-26/tree/main/cni/flannel#readme)
+* [Calico](https://github.com/mdditt2000/kubernetes-1-26/tree/main/cni/calico#readme)
+* [Cilium](https://github.com/mdditt2000/kubernetes-1-26/tree/main/cni/cilium#readme)
