@@ -17,8 +17,8 @@ spec:
       # Name of the Service Account bound to a Cluster Role with the required
       # permissions
       containers:
-        - name: f5networks
-          image: f5networks/k8s-bigip-ctlr:2.11.1
+        - name: k8s-bigip-ctlr
+          image: "mdditt2000/k8s-bigip-ctlr:2.11.1"
           env:
             - name: BIGIP_USERNAME
               valueFrom:
@@ -41,11 +41,10 @@ spec:
             # https://clouddocs.f5.com/containers/latest/
               "--bigip-username=$(BIGIP_USERNAME)",
               "--bigip-password=$(BIGIP_PASSWORD)",
-              "--bigip-url=10.192.75.60",
+              "--bigip-url=192.168.200.60",
               "--bigip-partition=k8s",
               "--namespace=default",
               "--pool-member-type=cluster",
-              "--flannel-name=cilium-vxlan-profile",
               "--log-level=DEBUG",
               "--insecure=true",
               "--custom-resource-mode=true",
