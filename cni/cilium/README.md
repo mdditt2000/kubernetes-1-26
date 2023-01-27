@@ -5,7 +5,7 @@ This guide documents how to use Cilium CNI with F5 BIG-IP. I am only going to pr
 
 ![architecture](https://github.com/mdditt2000/kubernetes-1-26/blob/main/cni/cilium/diagram/2023-01-27_12-58-51.png)
 
-Demo on YouTube [video]()
+Demo on YouTube [video](https://youtu.be/sxkC5LDY0Xs)
 
 ## This guide documents how to use Cilium CNI with F5 BIG-IP
 
