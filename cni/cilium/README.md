@@ -1,31 +1,28 @@
 # Setup Cilium with F5 BIG-IP
 
-This guide documents how to use Cilium CNI with F5 BIG-IP
+This guide documents how to use Cilium CNI with F5 BIG-IP. I am only going to provide a quick example for this documentation. 
+[Vincent Li](https://github.com/vincentmli) documents [BIG-IP Tunnel Setup for Cilium VTEP Integration](https://github.com/f5devcentral/f5-ci-docs/blob/master/docs/cilium/cilium-bigip-info.rst) and [Configuring Cilium CNI](https://clouddocs.f5.com/containers/latest/userguide/cilium-config.html?highlight=cilium#configuring-cilium-cni)
 
-#. Create a VXLAN tunnel profile. The tunnel profile name is fl-vxlan,
+## This guide documents how to use Cilium CNI with F5 BIG-IP
+
+### BIG-IP Tunnel Setup for Cilium VTEP Integration
+
+* Create a VXLAN tunnel profile. The tunnel profile name is fl-vxlan,
     tmsh create net tunnels vxlan fl-vxlan port 8472 flooding-type multipoint
 
-#. Create a VXLAN tunnel, the tunnel name is ``flannel_vxlan``, in CIS use ``-flannel-name`` argument
+* Create a VXLAN tunnel, the tunnel name is ``flannel_vxlan``, in CIS use ``-flannel-name`` argument
     tmsh create net tunnels tunnel flannel_vxlan key 2 profile fl-vxlan local-address 10.169.72.34
 
-#. Create VXLAN tunnel self IP, allow default service, allow none stops self ip ping from working
+* Create VXLAN tunnel self IP, allow default service, allow none stops self ip ping from working
     tmsh create net self 10.1.6.34 address 10.1.6.34/255.255.255.0 allow-service default vlan flannel_vxlan
 
-#. Create a static route to Cilium managed pod CIDR network ``10.0.0.0/16`` through tunnel interface ``flannel_vxlan``
+* Create a static route to Cilium managed pod CIDR network ``10.0.0.0/16`` through tunnel interface ``flannel_vxlan``
     tmsh create net route 10.0.0.0 network 10.0.0.0/16 interface flannel_vxlan
 
-#. Save sys config
+* Save sys config
     tmsh save sys config
 
-```
-enable-vtep:   "true"
-vtep-endpoint: "192.168.200.60"
-vtep-cidr:     "10.1.5.0/24"
-vtep-mask:     "255.255.255.0"
-vtep-mac:      "00:50:56:bb:f7:a7"
-```
-
-Add the BIG-IP device to the flannel overlay network. Find the VTEP MAC address
+* Add the BIG-IP device to the VXLAN overlay network. **Find the VTEP MAC address**
 
 ```
 root@(k8s)(cfg-sync Standalone)(zrd DOWN)(/Common)(tmos)# show net tunnels tunnel flannel_vxlan all-properties
@@ -49,7 +46,31 @@ HC Outgoing Octets                           1.6M
 HC Outgoing Unicast Packets                 24.7K
 HC Outgoing Multicast Packets                   0
 HC Outgoing Broadcast Packets                   0
-
-root@(k8s)(cfg-sync Standalone)(zrd DOWN)(/Common)(tmos)#
 ```
+
+### Enable Cilium VXLAN Tunnel Endpoint (VTEP) integration
+
+* Edit the **cilium-config** ConfigMap
+    kubectl edit cm cilium-config -n kube-system
+
+```
+enable-vtep:   "true"
+vtep-endpoint: "192.168.200.60"
+vtep-cidr:     "10.1.5.0/24"
+vtep-mask:     "255.255.255.0"
+vtep-mac:      "00:50:56:bb:f7:a7"
+```
+
+* Restart Cilium daemonset
+    kubectl rollout restart ds/cilium -n kube-system
+
+* Monitor the CIS logs for FDB entries
+
+```
+2023/01/27 20:41:25 [INFO] Text: '{"kind":"tm:net:fdb:tunnel:records:recordscollectionstate","selfLink":"https://localhost/mgmt/tm/net/fdb/tunnel/~Common~flannel_vxlan/records?ver=16.1.2","items":[{"kind":"tm:net:fdb:tunnel:records:recordsstate","name":"0a:0a:c0:a8:c8:41","fullPath":"0a:0a:c0:a8:c8:41","generation":130,"selfLink":"https://localhost/mgmt/tm/net/fdb/tunnel/~Common~flannel_vxlan/records/0a:0a:c0:a8:c8:41?ver=16.1.2","endpoint":"192.168.200.65%0"},{"kind":"tm:net:fdb:tunnel:records:recordsstate","name":"0a:0a:c0:a8:c8:42","fullPath":"0a:0a:c0:a8:c8:42","generation":130,"selfLink":"https://localhost/mgmt/tm/net/fdb/tunnel/~Common~flannel_vxlan/records/0a:0a:c0:a8:c8:42?ver=16.1.2","endpoint":"192.168.200.66%0"}]}'
+```
+
+Can also view the FDB entries from the F5 BIG-IP 
+
+
 
