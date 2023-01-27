@@ -3,24 +3,38 @@
 This guide documents how to use Cilium CNI with F5 BIG-IP. I am only going to provide a quick example for this documentation. 
 [Vincent Li](https://github.com/vincentmli) documents [BIG-IP Tunnel Setup for Cilium VTEP Integration](https://github.com/f5devcentral/f5-ci-docs/blob/master/docs/cilium/cilium-bigip-info.rst) and [Configuring Cilium CNI](https://clouddocs.f5.com/containers/latest/userguide/cilium-config.html?highlight=cilium#configuring-cilium-cni)
 
+![architecture](https://github.com/mdditt2000/k8s-bigip-ctlr/blob/main/user_guides/simplifying-ingress/diagram/2021-10-15_14-05-41.png)
+
+Demo on YouTube [video](https://www.youtube.com/watch?v=wEOcAPQY104)
+
 ## This guide documents how to use Cilium CNI with F5 BIG-IP
 
 ### BIG-IP Tunnel Setup for Cilium VTEP Integration
 
 * Create a VXLAN tunnel profile. The tunnel profile name is fl-vxlan,
-    tmsh create net tunnels vxlan fl-vxlan port 8472 flooding-type multipoint
+```
+tmsh create net tunnels vxlan fl-vxlan port 8472 flooding-type multipoint
+```
 
 * Create a VXLAN tunnel, the tunnel name is ``flannel_vxlan``, in CIS use ``-flannel-name`` argument
-    tmsh create net tunnels tunnel flannel_vxlan key 2 profile fl-vxlan local-address 10.169.72.34
+```
+tmsh create net tunnels tunnel flannel_vxlan key 2 profile fl-vxlan local-address 192.168.200.60
+```
 
 * Create VXLAN tunnel self IP, allow default service, allow none stops self ip ping from working
-    tmsh create net self 10.1.6.34 address 10.1.6.34/255.255.255.0 allow-service default vlan flannel_vxlan
+```
+tmsh create net self 10.1.6.60 address 10.1.6.60/255.255.255.0 allow-service default vlan flannel_vxlan
+```
 
 * Create a static route to Cilium managed pod CIDR network ``10.0.0.0/16`` through tunnel interface ``flannel_vxlan``
-    tmsh create net route 10.0.0.0 network 10.0.0.0/16 interface flannel_vxlan
+```
+tmsh create net route 10.0.0.0 network 10.0.0.0/16 interface flannel_vxlan
+```
 
 * Save sys config
-    tmsh save sys config
+```
+tmsh save sys config
+```
 
 * Add the BIG-IP device to the VXLAN overlay network. **Find the VTEP MAC address**
 
@@ -72,5 +86,5 @@ vtep-mac:      "00:50:56:bb:f7:a7"
 
 Can also view the FDB entries from the F5 BIG-IP 
 
-
+![FDB](https://github.com/mdditt2000/kubernetes-1-26/blob/main/cni/cilium/diagram/2023-01-27_12-47-16.png)
 
