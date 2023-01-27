@@ -3,9 +3,9 @@
 This guide documents how to use Cilium CNI with F5 BIG-IP. I am only going to provide a quick example for this documentation. 
 [Vincent Li](https://github.com/vincentmli) documents [BIG-IP Tunnel Setup for Cilium VTEP Integration](https://github.com/f5devcentral/f5-ci-docs/blob/master/docs/cilium/cilium-bigip-info.rst) and [Configuring Cilium CNI](https://clouddocs.f5.com/containers/latest/userguide/cilium-config.html?highlight=cilium#configuring-cilium-cni)
 
-![architecture](https://github.com/mdditt2000/k8s-bigip-ctlr/blob/main/user_guides/simplifying-ingress/diagram/2021-10-15_14-05-41.png)
+![architecture](https://github.com/mdditt2000/kubernetes-1-26/blob/main/cni/cilium/diagram/2023-01-27_12-58-51.png)
 
-Demo on YouTube [video](https://www.youtube.com/watch?v=wEOcAPQY104)
+Demo on YouTube [video]()
 
 ## This guide documents how to use Cilium CNI with F5 BIG-IP
 
