@@ -1,4 +1,4 @@
-# Kubernetes CNI with F5 BIG-IP
+# What Kubernetes CNI to use with F5 BIG-IP
 
 This document covers the different CNI that can be used with F5 BIG-IP when integrating with Kubernetes and OpenShift. This document also provides sampling of what CNIs are currently used on BIG-IP
 
