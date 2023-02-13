@@ -10,7 +10,7 @@ When used with Kubernetes, CNI can integrate smoothly with pods to enable the us
 
 ## CNIs used with F5 BIG-IP
 
-Diagram displays a sample of CNI usage with BIG-IP over a three year period
+**Diagram showing 3 years CNI usage with BIG-IP**
 
 ![cni](https://github.com/mdditt2000/kubernetes-1-26/blob/main/cni/diagram/2023-02-13_11-43-13.png)
 
