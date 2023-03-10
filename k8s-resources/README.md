@@ -10,12 +10,12 @@ This article, will guide you through various Kubernetes Ingress solutions and us
 
 F5 BIG-IP CIS support multiple Kubernetes Ingress Resources. The following are:
 
-* Ingress
-* ConfigMap
-* Routes
-* Custom Resource Definitions (CRDs)
+* [Ingress](https://github.com/F5Networks/k8s-bigip-ctlr/tree/master/docs/config_examples/ingress/networkingV1)
+* [ConfigMap](https://github.com/F5Networks/k8s-bigip-ctlr/tree/master/docs/config_examples/configmap)
+* [Routes](https://github.com/F5Networks/k8s-bigip-ctlr/tree/master/docs/config_examples/next-gen-routes)
+* [Custom Resource Definitions (CRDs)](https://github.com/F5Networks/k8s-bigip-ctlr/tree/master/docs/config_examples/customResource)
 
-This document displays sampling and trending of what Kubernetes Ingress Resources are used with CIS to configure F5 BIG-IP
+This document displays **sampling and trends over 3 years** of what Kubernetes Ingress Resources are used with CIS to configure F5 BIG-IP
 
 ## Kubernetes Ingress Resources Percentage 
 
