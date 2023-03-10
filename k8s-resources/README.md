@@ -2,7 +2,7 @@
 
 By default, Kubernetes pods and services cannot be accessed outside of the cluster. The Kubernetes Ingress resource is used to expose pods and services outside the cluster.
 
-Kubernetes Ingress allows you to configure various rules for routing traffic to services within your Kubernetes cluster. You can use an Kubernetes Ingress solution to load-balance traffic; terminate SSL/TLS; implement name-based virtual hosting; and enable API authentication and security, monitoring, and more.
+Kubernetes Ingress allows you to configure various rules for routing traffic to services within your Kubernetes cluster. You can use an Kubernetes Ingress solution to load-balance traffic; terminate SSL/TLS; implement name-based virtual hosting; enable security, monitoring, and more.
 
 This article, will guide you through various Kubernetes Ingress solutions and use cases to help you find the best Kubernetes Ingress option that fits your needs.
 
