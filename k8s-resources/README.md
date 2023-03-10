@@ -1,4 +1,4 @@
-# What Ingress Kubernetes Resources to use with F5 BIG-IP
+# What Kubernetes Ingress Resources to use with F5 BIG-IP
 
 By default, Kubernetes pods and services cannot be accessed outside of the cluster. The Kubernetes Ingress resource is one of several ways to expose pods and services outside the cluster.
 
@@ -6,17 +6,16 @@ Kubernetes Ingress allows you to configure various rules for routing traffic to 
 
 This article, will guide you through various Kubernetes Ingress solutions and use cases to help you find the best Kubernetes Ingress option that fits your needs.
 
-## Ingress Kubernetes Resources available on BIG-IP using CIS
+## Kubernetes Ingress Resources available on BIG-IP using CIS
 
-F5 BIG-IP CIS support multiple Kubernetes Ingress resources. The following are:
+F5 BIG-IP CIS support multiple Kubernetes Ingress Resources. The following are:
 
 * Ingress
 * ConfigMap
 * Routes
 * Custom Resource Definitions (CRDs)
 
-This document provides a sample of what F5 BIG-IP users are using and the trends
-
+This document displays sampling and trending of what Kubernetes Ingress Resources are used with CIS to configure F5 BIG-IP
 
 ## Kubernetes Ingress Resources Percentage 
 
