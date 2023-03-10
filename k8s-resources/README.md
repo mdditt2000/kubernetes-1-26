@@ -1,6 +1,6 @@
 # What Kubernetes Ingress Resources to use with F5 BIG-IP
 
-By default, Kubernetes pods and services cannot be accessed outside of the cluster. The Kubernetes Ingress resource is one of several ways to expose pods and services outside the cluster.
+By default, Kubernetes pods and services cannot be accessed outside of the cluster. The Kubernetes Ingress resource is used to expose pods and services outside the cluster.
 
 Kubernetes Ingress allows you to configure various rules for routing traffic to services within your Kubernetes cluster. You can use an Kubernetes Ingress solution to load-balance traffic; terminate SSL/TLS; implement name-based virtual hosting; and enable API authentication and security, monitoring, and more.
 
