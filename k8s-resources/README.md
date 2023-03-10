@@ -22,8 +22,8 @@ This document provides a sample of what F5 BIG-IP users are using and the trends
 
 Diagram shows CIS Kubernetes Ingress resources percentages used
 
-![percentages](https://github.com/mdditt2000/kubernetes-1-26/blob/main/cni/diagram/2023-02-13_11-43-13.png)
+![percentages](https://github.com/mdditt2000/kubernetes-1-26/blob/main/k8s-resources/diagram/2023-03-10_12-49-32.png)
 
 Diagram shows CIS Kubernetes Ingress resources trends
 
-![chart](https://github.com/mdditt2000/kubernetes-1-26/blob/main/cni/diagram/2023-02-13_11-43-13.png)
+![chart](https://github.com/mdditt2000/kubernetes-1-26/blob/main/k8s-resources/diagram/2023-03-10_12-50-34.png)
