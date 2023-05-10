@@ -1,0 +1,5 @@
+enable-vtep:   "true"
+vtep-endpoint: "192.168.200.60"
+vtep-cidr:     "10.1.5.0/24"
+vtep-mask:     "255.255.255.0"
+vtep-mac:      "00:50:56:bb:f7:a7"
