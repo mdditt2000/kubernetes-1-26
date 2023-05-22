@@ -5,10 +5,10 @@ metadata:
     f5cr: "true"
   name: vs-coffee-ab
   namespace: cafeone
-virtualServerAddress: 10.192.75.121
-tlsProfileName: edge-tls
-httpTraffic: redirect
 spec:
+  virtualServerAddress: 10.192.75.121
+  tlsProfileName: edge-tls
+  httpTraffic: redirect
   host: cafe.example.com
   pools:
     - path: /coffee
