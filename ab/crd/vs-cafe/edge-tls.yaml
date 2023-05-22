@@ -9,6 +9,7 @@ spec:
   hosts:
     - cafe.example.com
   tls:
+  termination: edge
     clientSSLs:
       - /Common/clientssl
     termination: bigip
