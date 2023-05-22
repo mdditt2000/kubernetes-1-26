@@ -8,7 +8,7 @@ metadata:
 spec:
   host: cafe.example.com
   pools:
-    - path: /tea
+    - path: /
       service: hello-world-app-a
       servicePort: 8080
       weight: 70
