@@ -7,7 +7,7 @@ This document demonstrates how to configure A/B testing using a CRD in Kubernete
 
 ![ab](https://github.com/mdditt2000/kubernetes-1-26/blob/main/ab/diagram/2023-05-10_16-07-50.png)
 
-Demo on YouTube [video]()
+Demo on YouTube [video](https://youtu.be/5m1Hl5Ej6HI)
 
 ### A/B Testing using CRD
 
