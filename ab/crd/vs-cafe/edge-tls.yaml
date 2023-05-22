@@ -10,6 +10,6 @@ spec:
     - cafe.example.com
   tls:
   termination: edge
-    clientSSLs:
+    clientSSL:
       - /Common/clientssl
     termination: bigip
