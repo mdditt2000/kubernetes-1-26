@@ -19,6 +19,7 @@ spec:
       containers:
         - name: k8s-bigip-ctlr
           image: "mdditt2000/k8s-bigip-ctlr:2.14.0"
+          imagePullPolicy: Always
           env:
             - name: BIGIP_USERNAME
               valueFrom:
