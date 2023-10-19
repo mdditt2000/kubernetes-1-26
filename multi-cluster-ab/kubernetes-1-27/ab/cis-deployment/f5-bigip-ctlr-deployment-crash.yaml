@@ -18,7 +18,7 @@ spec:
       # permissions
       containers:
         - name: redhat
-          image: registry.connect.redhat.com/f5networks/cntr-ingress-svcs:latest
+          image: quay.io/f5networks/k8s-bigip-ctlr-devel:e766045419be9ed56a56794c4bff0f7af4b3b41d
           env:
             - name: BIGIP_USERNAME
               valueFrom:
@@ -51,5 +51,7 @@ spec:
               "--custom-resource-mode=true",
               "--as3-validation=true",
               "--log-as3-response=true",
+              "--multi-cluster-mode=standalone",
+              "--extended-spec-configmap=kube-system/global-spec-config",
           ]
       serviceAccountName: bigip-ctlr
