@@ -10,8 +10,8 @@ data:
     mode: standalone
     highAvailabilityCIS:
       primaryCluster:
-        clusterName: kubernetes-1-27
-        secret: default/kubernetes-1-27
+        clusterName: kubeconfig-1-27
+        secret: default/kubeconfig-1-27
     externalClustersConfig:
-    - clusterName: kubernetes-1-28
-      secret: default/kubernetes-1-28
+    - clusterName: kubeconfig-1-28
+      secret: default/kubeconfig-1-28
