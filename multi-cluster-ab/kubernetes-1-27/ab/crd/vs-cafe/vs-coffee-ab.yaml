@@ -4,7 +4,7 @@ metadata:
   labels:
     f5cr: "true"
   name: vs-coffee-ab
-  namespace: cafeone
+  namespace: cafe
 spec:
   virtualServerAddress: 10.192.75.121
   host: cafe.example.com
@@ -13,7 +13,9 @@ spec:
       service: coffee-svc
       servicePort: 8080
       weight: 70
-      alternateBackends:
-        - service: coffee-svc
+      extendedServiceReferences:
+        - clusterName: kubeconfig-1-28
+          namespace: cafe
+          port: 8080
+          serviceName: coffee-svc
           weight: 30
-          serviceNamespace: cafetwo
