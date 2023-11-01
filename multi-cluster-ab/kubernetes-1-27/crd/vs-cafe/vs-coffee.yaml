@@ -12,8 +12,3 @@ spec:
     - path: /coffee
       service: coffee-svc
       servicePort: 8080
-      extendedServiceReferences:
-        - clusterName: kubeconfig-1-28
-          namespace: cafe
-          port: 8080
-          serviceName: coffee-svc
